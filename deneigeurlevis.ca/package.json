@@ -1,0 +1,21 @@
+{
+  "name": "deneigeurlevis-ca",
+  "version": "1.0.0",
+  "description": "Site statique Déneigeur Lévis (Cloudflare Pages)",
+  "scripts": {
+    "assets": "node src/assets.mjs",
+    "build": "node src/build.mjs",
+    "build:all": "node src/assets.mjs && node src/build.mjs",
+    "deploy": "npx wrangler pages deploy public --project-name=deneigeurlevis --branch=main"
+  },
+  "devDependencies": {
+    "@expo-google-fonts/montserrat": "^0.4.2",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
+    "opentype.js": "^2.0.0",
+    "playwright-core": "^1.63.0",
+    "sharp": "^0.33.5"
+  },
+  "private": true,
+  "type": "module"
+}
