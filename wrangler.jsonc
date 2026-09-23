@@ -1,0 +1,12 @@
+// Configuration Cloudflare Workers (actifs statiques) pour deneigeurlevis.ca.
+// Le site est prégénéré dans deneigeurlevis.ca/public (voir deneigeurlevis.ca/README.md).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rank-and-rent-sites",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./deneigeurlevis.ca/public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

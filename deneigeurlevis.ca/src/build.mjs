@@ -320,7 +320,6 @@ write("_redirects", `# Raccourcis et anciennes adresses probables
 /blog /conseils/ 301
 /services/deneigement-residentiel /services/deneigement-residentiel-levis/ 301
 /services/deneigement-commercial /services/deneigement-commercial-levis/ 301
-/index.html / 301
 `);
 
 console.log(`${ALL.length} pages générées (${indexable.length} dans le sitemap) → ${path.relative(ROOT, OUT)}/`);

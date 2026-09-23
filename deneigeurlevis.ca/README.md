@@ -27,30 +27,24 @@ npm run build       # régénère seulement les pages
 
 Modifier un texte : éditer le fichier dans `src/content/`, puis `npm run build`.
 
-## Déploiement Cloudflare Pages
+## Déploiement Cloudflare (Workers, actifs statiques)
 
-### Option A : Wrangler (déploiement direct)
+Le Worker `rank-and-rent-sites` est relié à ce dépôt GitHub (Workers Builds).
+La configuration est dans `wrangler.jsonc` à la racine du dépôt : elle publie `deneigeurlevis.ca/public`.
 
-```bash
-export CLOUDFLARE_API_TOKEN=...      # permissions : Cloudflare Pages Edit + Zone DNS Edit
-export CLOUDFLARE_ACCOUNT_ID=...
-npx wrangler pages project create deneigeurlevis --production-branch=main   # première fois seulement
-npm run deploy
-```
+Réglages de build attendus dans Cloudflare :
+- Build command : *(vide)* : `public/` est déjà généré et versionné
+- Deploy command : `npx wrangler deploy`
+- Root directory : `/`
 
-### Option B : intégration Git
-
-Cloudflare → Workers & Pages → Create → Pages → Connect to Git → ce dépôt.
-- Production branch : `main` (ou la branche de travail)
-- Build command : *(vide)* : le dossier `public/` est déjà généré et versionné
-- Build output directory : `deneigeurlevis.ca/public`
+Chaque push sur la branche configurée redéploie le site. Après une modification de texte :
+`npm run build` dans `deneigeurlevis.ca/`, puis commit et push.
 
 ### Domaines personnalisés
 
-Pages → projet → Custom domains → ajouter `deneigeurlevis.ca` **et** `www.deneigeurlevis.ca`.
+Worker → Settings → Domains & Routes → Add → Custom domain : ajouter `deneigeurlevis.ca`, puis `www.deneigeurlevis.ca`.
 Toutes les URL canoniques pointent vers `https://deneigeurlevis.ca/` (sans www). Pour rediriger le www :
-Rules → Redirect Rules → *Redirect from WWW to root* (modèle Cloudflare), code 301.
-Activer aussi *Always Use HTTPS* dans SSL/TLS → Edge Certificates.
+zone deneigeurlevis.ca → Rules → Redirect Rules → modèle *Redirect from WWW to root*, code 301.
 
 ## Formulaire (FormSubmit)
 
