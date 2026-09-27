@@ -1,0 +1,18 @@
+// Configuration Cloudflare Workers (actifs statiques) pour remorquagejoliette.ca.
+// Le site est prégénéré dans ./public (voir README.md). Aucun script : Cloudflare sert les fichiers
+// directement et applique public/_headers et public/_redirects.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "remorquage-joliette",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // Domaines personnalisés : attachés automatiquement au déploiement (la zone doit être dans le même compte)
+  "routes": [
+    { "pattern": "remorquagejoliette.ca", "custom_domain": true },
+    { "pattern": "www.remorquagejoliette.ca", "custom_domain": true }
+  ]
+}
